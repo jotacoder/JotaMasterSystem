@@ -1,39 +1,24 @@
+/** JotaMasterSystem: A Master System Emulator
+ * Copyright (c) Juan José Chica <jotacoder@gmail.com>
+ * Insert MIT license here.
+ */
+
 #include <QCoreApplication>
 #include <iostream>
-#include <stdint.h>
 
-union RegistersZ80
-{
-  struct {uint16_t AF, BC, DE, HL, IX, IY;};
-  #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-  struct {uint8_t F, A, C, B, E, D, L, H, IXl, IXh, IYl, IYh;};
-  #else
-  struct {uint8_t A, F, B, C, D, E, H, L, IXh, IXl, IYh, IYl;};
-  #endif
-};
-
-struct ContextZ80
-{
-  RegistersZ80 regs;
-  RegistersZ80 alt;
-
-  uint16_t PC;
-  uint16_t SP;
-};
-
-
+#include "z80.h"
 
 int main(int argc, char *argv[])
 {
   QCoreApplication a(argc, argv);
 
-  ContextZ80 context;
+  jota::Z80 cpu;
 
-  context.regs.BC = 256;
+  cpu.m_main.BC = 256;
 
-  std::cout<<"BC "<<(int)context.regs.BC<<std::endl;
-  std::cout<<"B "<<(int)context.regs.B<<std::endl;
-  std::cout<<"C "<<(int)context.regs.C<<std::endl;
+  std::cout<<"BC "<<(int)cpu.m_main.BC<<std::endl;
+  std::cout<<"B "<<(int)cpu.m_main.B<<std::endl;
+  std::cout<<"C "<<(int)cpu.m_main.C<<std::endl;
 
   return a.exec();
 }
