@@ -7,6 +7,7 @@
 #define Z80_H
 
 #include "types.h"
+#include "Memory.h"
 namespace jota
 {
 
@@ -25,10 +26,16 @@ private:
   /// Decode and execute an intruction.
   int decodeAndExecute(const uint8 &opcode);
 
+  /// Decode and execute an intruction for 0xDD SubOpcode.
+  int decodeAndExecuteDD(const uint8 &subopcode);
+
+  /// Decode and execute an intruction for 0xFD SubOpcode.
+  int decodeAndExecuteFD(const uint8 &subopcode);
+
 
 public: //private
 
-  uint8         m_memory[65536];  ///< 64K bytes of memory
+  Memory        m_memory;         ///< 64K bytes of memory
 
   RegistersZ80  m_main;           ///< Main registers
   RegistersZ80  m_alternatives;   ///< Alternative registers

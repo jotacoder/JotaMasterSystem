@@ -10,8 +10,10 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    z80.cpp
+    z80.cpp \
+    Memory.cpp
 
 HEADERS += \
     types.h \
-    z80.h
+    z80.h \
+    Memory.h
