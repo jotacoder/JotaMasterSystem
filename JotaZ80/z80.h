@@ -31,10 +31,22 @@ namespace jota
 class Z80
 {
 public:
-  Z80();
+  Z80(Memory *memory);
 
   /// Do 1 instrucction cycle.
-  void run();
+  int run();
+
+  /// Getter main register
+  RegistersZ80& registers() { return m_main; }
+
+  ///Getter alternatives registers
+  RegistersZ80& alternatives() { return m_alternatives; }
+
+  ///Getter indexation registers
+  IndexZ80& indexation() { return m_index; }
+
+
+  //Faltan  mas accesos
 
 private:
   /// Fetch the instruction or operand from memory
@@ -50,9 +62,9 @@ private:
   int decodeAndExecuteFD(const uint8 &subopcode);
 
 
-public: //private
+private:
 
-  Memory        m_memory;         ///< 64K bytes of memory
+  Memory        *m_memory;         ///< 64K bytes of memory
 
   RegistersZ80  m_main;           ///< Main registers
   RegistersZ80  m_alternatives;   ///< Alternative registers

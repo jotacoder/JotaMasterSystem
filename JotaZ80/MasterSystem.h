@@ -20,26 +20,27 @@
  * THE SOFTWARE.
  */
 
+#ifndef MASTERSYSTEM_H
+#define MASTERSYSTEM_H
+
+#include "z80.h"
 #include "Memory.h"
-#include <string.h>
 
 namespace jota
 {
 
-Memory::Memory()
+
+class MasterSystem
 {
-  memset (m_memory ,0, 65536);
-}
+public:
+  MasterSystem();
+  ~MasterSystem();
 
-
-void Memory::write(const uint16 &address, const uint8 &value)
-{
-  m_memory[address] = value;
-}
-
-const uint8& Memory::read(const uint16 &address) const
-{
-  return m_memory[address];
-}
+private:
+  Z80     *m_cpu;
+  Memory  *m_memory;
+};
 
 }
+
+#endif // MASTERSYSTEM_H

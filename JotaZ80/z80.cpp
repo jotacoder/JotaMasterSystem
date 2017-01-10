@@ -1,22 +1,59 @@
+/** JotaMasterSystem: A Master System Emulator
+ * Copyright (c) Juan José Chica <jotacoder@gmail.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 #include "z80.h"
 namespace jota
 {
 
 
-Z80::Z80()
+Z80::Z80(Memory *memory): m_memory(memory)
 {
+  m_PC = 0;
+  m_SP = 0;
+
+  m_main.AF = 0;
+  m_main.BC = 0;
+  m_main.DE = 0;
+  m_main.HL = 0;
+
+  m_alternatives.AF = 0;
+  m_alternatives.BC = 0;
+  m_alternatives.DE = 0;
+  m_alternatives.HL = 0;
+
+  m_index.IX = 0;
+  m_index.IY = 0;
 
 }
 
-void Z80::run()
+int Z80::run()
 {
   uint8 opcode = fetch();
-  decodeAndExecute(opcode);
+  return decodeAndExecute(opcode);
 }
 
 uint8 Z80::fetch()
 {
-  uint8 data = m_memory.read(m_PC);
+  uint8 data = m_memory->read(m_PC);
   m_PC++;
   return data;
 }
@@ -79,7 +116,7 @@ int Z80::decodeAndExecute(const uint8 &opcode)
     break;
 
   case 0x7D: // LD A, L
-    m_main.A = m_main.A;
+    m_main.A = m_main.L;
     ticks = 4;
     break;
 
@@ -339,97 +376,97 @@ int Z80::decodeAndExecute(const uint8 &opcode)
 
   // LD r,(HL)
   case 0x7E: // LD A,(HL)
-    v = m_memory.read(m_main.HL);
+    v = m_memory->read(m_main.HL);
     m_main.A = v;
     ticks = 7;
     break;
 
   case 0x46: // LD B,(HL)
-    v = m_memory.read(m_main.HL);
+    v = m_memory->read(m_main.HL);
     m_main.B = v;
     ticks = 7;
     break;
 
   case 0x4E: // LD C,(HL)
-    v = m_memory.read(m_main.HL);
+    v = m_memory->read(m_main.HL);
     m_main.C = v;
     ticks = 7;
     break;
 
   case 0x56: // LD D,(HL)
-    v = m_memory.read(m_main.HL);
+    v = m_memory->read(m_main.HL);
     m_main.D = v;
     ticks = 7;
     break;
 
   case 0x5E: // LD E,(HL)
-    v = m_memory.read(m_main.HL);
+    v = m_memory->read(m_main.HL);
     m_main.E = v;
     ticks = 7;
     break;
 
   case 0x66: // LD H,(HL)
-    v = m_memory.read(m_main.HL);
+    v = m_memory->read(m_main.HL);
     m_main.H = v;
     ticks = 7;
     break;
 
   case 0x6E: // LD L,(HL)
-    v = m_memory.read(m_main.HL);
+    v = m_memory->read(m_main.HL);
     m_main.L = v;
     ticks = 7;
     break;
 
   // LD (HL), A
   case 0x77: // LD (HL), A
-    m_memory.write(m_main.HL, m_main.A);
+    m_memory->write(m_main.HL, m_main.A);
     ticks = 7;
     break;
 
   case 0x70: // LD (HL), B
-    m_memory.write(m_main.HL, m_main.B);
+    m_memory->write(m_main.HL, m_main.B);
     ticks = 7;
     break;
 
   case 0x71: // LD (HL), C
-    m_memory.write(m_main.HL, m_main.C);
+    m_memory->write(m_main.HL, m_main.C);
     ticks = 7;
     break;
 
   case 0x72: // LD (HL), D
-    m_memory.write(m_main.HL, m_main.D);
+    m_memory->write(m_main.HL, m_main.D);
     ticks = 7;
     break;
 
   case 0x73: // LD (HL), E
-    m_memory.write(m_main.HL, m_main.E);
+    m_memory->write(m_main.HL, m_main.E);
     ticks = 7;
     break;
 
   case 0x74: // LD (HL), H
-    m_memory.write(m_main.HL, m_main.H);
+    m_memory->write(m_main.HL, m_main.H);
     ticks = 7;
     break;
 
   case 0x75: // LD (HL), L
-    m_memory.write(m_main.HL, m_main.L);
+    m_memory->write(m_main.HL, m_main.L);
     ticks = 7;
     break;
 
   case 0x36: // LD (HL), n
     n = fetch();
-    m_memory.write(m_main.HL, n);
+    m_memory->write(m_main.HL, n);
     ticks = 10;
     break;
 
   case 0x0A: // LD A,(BC)
-    v = m_memory.read(m_main.BC);
+    v = m_memory->read(m_main.BC);
     m_main.A = v;
     ticks = 7;
     break;
 
   case 0x1A: // LD A,(DE)
-    v = m_memory.read(m_main.DE);
+    v = m_memory->read(m_main.DE);
     m_main.A = v;
     ticks = 7;
     break;
@@ -455,49 +492,49 @@ int Z80::decodeAndExecuteDD(const uint8 &subopcode)
   // LD r,(IX+d)
   case 0x7E:  // LD A,(IX+d)
     d = fetch();
-    v = m_memory.read(m_index.IX + d);
+    v = m_memory->read(m_index.IX + d);
     m_main.A = v;
     ticks = 19;
     break;
 
   case 0x46:  // LD B,(IX+d)
     d = fetch();
-    v = m_memory.read(m_index.IX + d);
+    v = m_memory->read(m_index.IX + d);
     m_main.B = v;
     ticks = 19;
     break;
 
   case 0x4E:  // LD C,(IX+d)
     d = fetch();
-    v = m_memory.read(m_index.IX + d);
+    v = m_memory->read(m_index.IX + d);
     m_main.C = v;
     ticks = 19;
     break;
 
   case 0x56:  // LD D,(IX+d)
     d = fetch();
-    v = m_memory.read(m_index.IX + d);
+    v = m_memory->read(m_index.IX + d);
     m_main.D = v;
     ticks = 19;
     break;
 
   case 0x5E:  // LD E,(IX+d)
     d = fetch();
-    v = m_memory.read(m_index.IX + d);
+    v = m_memory->read(m_index.IX + d);
     m_main.E = v;
     ticks = 19;
     break;
 
   case 0x66:  // LD H,(IX+d)
     d = fetch();
-    v = m_memory.read(m_index.IX + d);
+    v = m_memory->read(m_index.IX + d);
     m_main.H = v;
     ticks = 19;
     break;
 
   case 0x6E:  // LD L,(IX+d)
     d = fetch();
-    v = m_memory.read(m_index.IX + d);
+    v = m_memory->read(m_index.IX + d);
     m_main.L = v;
     ticks = 19;
     break;
@@ -505,50 +542,50 @@ int Z80::decodeAndExecuteDD(const uint8 &subopcode)
   // LD r,(IX+d)
   case 0x77:  // LD A,(IX+d)
     d = fetch();
-    m_memory.write(m_index.IX + d, m_main.A);
+    m_memory->write(m_index.IX + d, m_main.A);
     ticks = 19;
     break;
 
   case 0x70:  // LD B,(IX+d)
     d = fetch();
-    m_memory.write(m_index.IX + d, m_main.B);
+    m_memory->write(m_index.IX + d, m_main.B);
     ticks = 19;
     break;
 
   case 0x71:  // LD C,(IX+d)
     d = fetch();
-    m_memory.write(m_index.IX + d, m_main.C);
+    m_memory->write(m_index.IX + d, m_main.C);
     ticks = 19;
     break;
 
   case 0x72:  // LD D,(IX+d)
     d = fetch();
-    m_memory.write(m_index.IX + d, m_main.D);
+    m_memory->write(m_index.IX + d, m_main.D);
     ticks = 19;
     break;
 
   case 0x73:  // LD E,(IX+d)
     d = fetch();
-    m_memory.write(m_index.IX + d, m_main.E);
+    m_memory->write(m_index.IX + d, m_main.E);
     ticks = 19;
     break;
 
   case 0x74:  // LD H,(IX+d)
     d = fetch();
-    m_memory.write(m_index.IX + d, m_main.H);
+    m_memory->write(m_index.IX + d, m_main.H);
     ticks = 19;
     break;
 
   case 0x75:  // LD A,(IX+d)
     d = fetch();
-    m_memory.write(m_index.IX + d, m_main.L);
+    m_memory->write(m_index.IX + d, m_main.L);
     ticks = 19;
     break;
 
   case 0x36: // LD (IX+d), n
     d = fetch();
     n = fetch();
-    m_memory.write(m_index.IX + d, n);
+    m_memory->write(m_index.IX + d, n);
     ticks = 19;
     break;
 
@@ -579,49 +616,49 @@ int Z80::decodeAndExecuteFD(const uint8 &subopcode)
   // LD r,(IY+d)
   case 0x7E:  // LD A,(IY+d)
     d = fetch();
-    v = m_memory.read(m_index.IY + d);
+    v = m_memory->read(m_index.IY + d);
     m_main.A = v;
     ticks = 19;
     break;
 
   case 0x46:  // LD B,(IY+d)
     d = fetch();
-    v = m_memory.read(m_index.IY + d);
+    v = m_memory->read(m_index.IY + d);
     m_main.B = v;
     ticks = 19;
     break;
 
   case 0x4E:  // LD C,(IY+d)
     d = fetch();
-    v = m_memory.read(m_index.IY + d);
+    v = m_memory->read(m_index.IY + d);
     m_main.C = v;
     ticks = 19;
     break;
 
   case 0x56:  // LD D,(IY+d)
     d = fetch();
-    v = m_memory.read(m_index.IY + d);
+    v = m_memory->read(m_index.IY + d);
     m_main.D = v;
     ticks = 19;
     break;
 
   case 0x5E:  // LD E,(IY+d)
     d = fetch();
-    v = m_memory.read(m_index.IY + d);
+    v = m_memory->read(m_index.IY + d);
     m_main.E = v;
     ticks = 19;
     break;
 
   case 0x66:  // LD H,(IY+d)
     d = fetch();
-    v = m_memory.read(m_index.IY + d);
+    v = m_memory->read(m_index.IY + d);
     m_main.H = v;
     ticks = 19;
     break;
 
   case 0x6E:  // LD L,(IY+d)
     d = fetch();
-    v = m_memory.read(m_index.IY + d);
+    v = m_memory->read(m_index.IY + d);
     m_main.L = v;
     ticks = 19;
     break;
@@ -629,50 +666,50 @@ int Z80::decodeAndExecuteFD(const uint8 &subopcode)
   // LD r,(IY+d)
   case 0x77:  // LD A,(IY+d)
     d = fetch();
-    m_memory.write(m_index.IY + d, m_main.A);
+    m_memory->write(m_index.IY + d, m_main.A);
     ticks = 19;
     break;
 
   case 0x70:  // LD B,(IY+d)
     d = fetch();
-    m_memory.write(m_index.IY + d, m_main.B);
+    m_memory->write(m_index.IY + d, m_main.B);
     ticks = 19;
     break;
 
   case 0x71:  // LD C,(IY+d)
     d = fetch();
-    m_memory.write(m_index.IY + d, m_main.C);
+    m_memory->write(m_index.IY + d, m_main.C);
     ticks = 19;
     break;
 
   case 0x72:  // LD D,(IY+d)
     d = fetch();
-    m_memory.write(m_index.IY + d, m_main.D);
+    m_memory->write(m_index.IY + d, m_main.D);
     ticks = 19;
     break;
 
   case 0x73:  // LD E,(IY+d)
     d = fetch();
-    m_memory.write(m_index.IY + d, m_main.E);
+    m_memory->write(m_index.IY + d, m_main.E);
     ticks = 19;
     break;
 
   case 0x74:  // LD H,(IY+d)
     d = fetch();
-    m_memory.write(m_index.IY + d, m_main.H);
+    m_memory->write(m_index.IY + d, m_main.H);
     ticks = 19;
     break;
 
   case 0x75:  // LD A,(IY+d)
     d = fetch();
-    m_memory.write(m_index.IY + d, m_main.L);
+    m_memory->write(m_index.IY + d, m_main.L);
     ticks = 19;
     break;
 
   case 0x36: // LD (IY+d), n
     d = fetch();
     n = fetch();
-    m_memory.write(m_index.IY + d, n);
+    m_memory->write(m_index.IY + d, n);
     ticks = 19;
     break;
 
