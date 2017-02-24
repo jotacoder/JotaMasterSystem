@@ -1303,3 +1303,4 @@ TEST_F(Load8bit, LD_A_$DE$)
   EXPECT_EQ(cpu->registers().A, 100);
   EXPECT_EQ(ticks, 7);
 }
+

@@ -20,8 +20,10 @@ win32:PRE_TARGETDEPS += $$PWD/../../googletest/lib/libgmock_main.a
 
 SOURCES += z80.cpp \
     Memory.cpp \
-    test/load8bit.cpp \
-    MasterSystem.cpp
+    MasterSystem.cpp \
+    instructions/load8bit.cpp \
+    test/test_load8bit.cpp \
+    instructions/initialization.cpp
 
 HEADERS += \
     types.h \
