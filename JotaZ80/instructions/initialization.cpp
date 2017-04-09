@@ -28,9 +28,19 @@ namespace jota
 
 void Z80::initializeDecodeTables()
 {
+  for(int i = 0; i < 256; ++i)
+  {
+     m_decodetable[i] = NULL;
+     m_decodetableDD[i] = NULL;
+     m_decodetableFD[i] = NULL;
+     m_decodetableED[i] = NULL;
+  }
+
+
   // Subocode tables
   m_decodetable[0xDD]   = &Z80::decodeAndExecuteDD;
   m_decodetable[0xFD]   = &Z80::decodeAndExecuteFD;
+  m_decodetable[0xED]   = &Z80::decodeAndExecuteED;
 
   // LD r,r'
   m_decodetable[0x7F]   = &Z80::ld_A_A;
@@ -148,6 +158,63 @@ void Z80::initializeDecodeTables()
   m_decodetable[0x0A]   = &Z80::ld_A_$BC$;
   // LD A, (DE)
   m_decodetable[0x1A]   = &Z80::ld_A_$DE$;
+  // LD A, (nn)
+  m_decodetable[0x3A]   = &Z80::ld_A_$nn$;
+  // LD (BC), A
+  m_decodetable[0x02]   = &Z80::ld_$BC$_A;
+  // LD (DE), A
+  m_decodetable[0x12]   = &Z80::ld_$DE$_A;
+  // LD (nn), A
+  m_decodetable[0x32]   = &Z80::ld_$nn$_A;
+  // LD A, I
+  m_decodetableED[0x57] = &Z80::ld_A_I;
+  // LD A, R
+  m_decodetableED[0x5F] = &Z80::ld_A_R;
+  // LD I, A
+  m_decodetableED[0x47] = &Z80::ld_I_A;
+  // LD R, A
+  m_decodetableED[0x4F] = &Z80::ld_R_A;
+
+  // Load 16 bit
+  //-------------------
+  //LD dd, nn
+  m_decodetable[0x01]   = &Z80::ld_BC_nn;
+  m_decodetable[0x11]   = &Z80::ld_DE_nn;
+  m_decodetable[0x21]   = &Z80::ld_HL_nn;
+  m_decodetable[0x31]   = &Z80::ld_SP_nn;  
+  // LD IX, nn
+  m_decodetableDD[0x21] = &Z80::ld_IX_nn;
+  // LD IY, nn
+  m_decodetableFD[0x21] = &Z80::ld_IY_nn;
+  // LD HL, (nn)
+  m_decodetable[0x2A] = &Z80::ld_HL_$nn$;
+  // LD dd, (nn)
+  m_decodetableED[0x4B] = &Z80::ld_BC_$nn$;
+  m_decodetableED[0x5B] = &Z80::ld_DE_$nn$;
+  m_decodetableED[0x6B] = &Z80::ld_HL_$nn$2;
+  m_decodetableED[0x7B] = &Z80::ld_SP_$nn$;
+  // LD IX, (nn)
+  m_decodetableDD[0x2A] = &Z80::ld_IX_$nn$;
+  // LD IY, (nn)
+  m_decodetableFD[0x2A] = &Z80::ld_IY_$nn$;
+  // LD (nn), HL
+  m_decodetable[0x22]   = &Z80::ld_$nn$_HL;
+  // LD (nn), dd
+  m_decodetableED[0x43] = &Z80::ld_$nn$_BC;
+  m_decodetableED[0x53] = &Z80::ld_$nn$_DE;
+  m_decodetableED[0x63] = &Z80::ld_$nn$_HL2;
+  m_decodetableED[0x73] = &Z80::ld_$nn$_SP;
+  // LD (nn), IX
+  m_decodetableDD[0x22] = &Z80::ld_$nn$_IX;
+  // LD (nn), IY
+  m_decodetableFD[0x22] = &Z80::ld_$nn$_IY;
+  // LD SP, HL
+  m_decodetable[0xF9]   = &Z80::ld_SP_HL;
+  // LD SP, IX
+  m_decodetableDD[0xF9] = &Z80::ld_SP_IX;
+  // LD SP, IY
+  m_decodetableFD[0xF9] = &Z80::ld_SP_IY;
+
 }
 
 }

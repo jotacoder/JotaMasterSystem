@@ -21,294 +21,295 @@
  */
 
 #include "z80.h"
+#include "utils.h"
 
 namespace jota
 {
 
 int Z80::ld_A_A()
 {
-  m_main.A = m_main.A;
+  registers().A = registers().A;
   return 4;
 }
 
 int Z80::ld_A_B()
 {
-  m_main.A = m_main.B;
+  registers().A = registers().B;
   return 4;
 }
 
 int Z80::ld_A_C()
 {
-  m_main.A = m_main.C;
+  registers().A = registers().C;
   return 4;
 }
 
 int Z80::ld_A_D()
 {
-  m_main.A = m_main.D;
+  registers().A = registers().D;
   return 4;
 }
 
 int Z80::ld_A_E()
 {
-  m_main.A = m_main.E;
+  registers().A = registers().E;
   return 4;
 }
 int Z80::ld_A_H()
 {
-  m_main.A = m_main.H;
+  registers().A = registers().H;
   return 4;
 }
 
 int Z80::ld_A_L()
 {
-  m_main.A = m_main.L;
+  registers().A = registers().L;
   return 4;
 }
 
 int Z80::ld_B_A()
 {
-  m_main.B = m_main.A;
+  registers().B = registers().A;
   return 4;
 }
 
 int Z80::ld_B_B()
 {
-  m_main.B = m_main.B;
+  registers().B = registers().B;
   return 4;
 }
 
 int Z80::ld_B_C()
 {
-  m_main.B = m_main.C;
+  registers().B = registers().C;
   return 4;
 }
 
 int Z80::ld_B_D()
 {
-  m_main.B = m_main.D;
+  registers().B = registers().D;
   return 4;
 }
 
 int Z80::ld_B_E()
 {
-  m_main.B = m_main.E;
+  registers().B = registers().E;
   return 4;
 }
 int Z80::ld_B_H()
 {
-  m_main.B = m_main.H;
+  registers().B = registers().H;
   return 4;
 }
 
 int Z80::ld_B_L()
 {
-  m_main.B = m_main.L;
+  registers().B = registers().L;
   return 4;
 }
 
 int Z80::ld_C_A()
 {
-  m_main.C = m_main.A;
+  registers().C = registers().A;
   return 4;
 }
 
 int Z80::ld_C_B()
 {
-  m_main.C = m_main.B;
+  registers().C = registers().B;
   return 4;
 }
 
 int Z80::ld_C_C()
 {
-  m_main.C = m_main.C;
+  registers().C = registers().C;
   return 4;
 }
 
 int Z80::ld_C_D()
 {
-  m_main.C = m_main.D;
+  registers().C = registers().D;
   return 4;
 }
 
 int Z80::ld_C_E()
 {
-  m_main.C = m_main.E;
+  registers().C = registers().E;
   return 4;
 }
 int Z80::ld_C_H()
 {
-  m_main.C = m_main.H;
+  registers().C = registers().H;
   return 4;
 }
 
 int Z80::ld_C_L()
 {
-  m_main.C = m_main.L;
+  registers().C = registers().L;
   return 4;
 }
 
 int Z80::ld_D_A()
 {
-  m_main.D = m_main.A;
+  registers().D = registers().A;
   return 4;
 }
 
 int Z80::ld_D_B()
 {
-  m_main.D = m_main.B;
+  registers().D = registers().B;
   return 4;
 }
 
 int Z80::ld_D_C()
 {
-  m_main.D = m_main.C;
+  registers().D = registers().C;
   return 4;
 }
 
 int Z80::ld_D_D()
 {
-  m_main.D = m_main.D;
+  registers().D = registers().D;
   return 4;
 }
 
 int Z80::ld_D_E()
 {
-  m_main.D = m_main.E;
+  registers().D = registers().E;
   return 4;
 }
 int Z80::ld_D_H()
 {
-  m_main.D = m_main.H;
+  registers().D = registers().H;
   return 4;
 }
 
 int Z80::ld_D_L()
 {
-  m_main.D = m_main.L;
+  registers().D = registers().L;
   return 4;
 }
 
 int Z80::ld_E_A()
 {
-  m_main.E = m_main.A;
+  registers().E = registers().A;
   return 4;
 }
 
 int Z80::ld_E_B()
 {
-  m_main.E = m_main.B;
+  registers().E = registers().B;
   return 4;
 }
 
 int Z80::ld_E_C()
 {
-  m_main.E = m_main.C;
+  registers().E = registers().C;
   return 4;
 }
 
 int Z80::ld_E_D()
 {
-  m_main.E = m_main.D;
+  registers().E = registers().D;
   return 4;
 }
 
 int Z80::ld_E_E()
 {
-  m_main.E = m_main.E;
+  registers().E = registers().E;
   return 4;
 }
 int Z80::ld_E_H()
 {
-  m_main.E = m_main.H;
+  registers().E = registers().H;
   return 4;
 }
 
 int Z80::ld_E_L()
 {
-  m_main.E = m_main.L;
+  registers().E = registers().L;
   return 4;
 }
 
 int Z80::ld_H_A()
 {
-  m_main.H = m_main.A;
+  registers().H = registers().A;
   return 4;
 }
 
 int Z80::ld_H_B()
 {
-  m_main.H = m_main.B;
+  registers().H = registers().B;
   return 4;
 }
 
 int Z80::ld_H_C()
 {
-  m_main.H = m_main.C;
+  registers().H = registers().C;
   return 4;
 }
 
 int Z80::ld_H_D()
 {
-  m_main.H = m_main.D;
+  registers().H = registers().D;
   return 4;
 }
 
 int Z80::ld_H_E()
 {
-  m_main.H = m_main.E;
+  registers().H = registers().E;
   return 4;
 }
 int Z80::ld_H_H()
 {
-  m_main.H = m_main.H;
+  registers().H = registers().H;
   return 4;
 }
 
 int Z80::ld_H_L()
 {
-  m_main.H = m_main.L;
+  registers().H = registers().L;
   return 4;
 }
 
 int Z80::ld_L_A()
 {
-  m_main.L = m_main.A;
+  registers().L = registers().A;
   return 4;
 }
 
 int Z80::ld_L_B()
 {
-  m_main.L = m_main.B;
+  registers().L = registers().B;
   return 4;
 }
 
 int Z80::ld_L_C()
 {
-  m_main.L = m_main.C;
+  registers().L = registers().C;
   return 4;
 }
 
 int Z80::ld_L_D()
 {
-  m_main.L = m_main.D;
+  registers().L = registers().D;
   return 4;
 }
 
 int Z80::ld_L_E()
 {
-  m_main.L = m_main.E;
+  registers().L = registers().E;
   return 4;
 }
 int Z80::ld_L_H()
 {
-  m_main.L = m_main.H;
+  registers().L = registers().H;
   return 4;
 }
 
 int Z80::ld_L_L()
 {
-  m_main.L = m_main.L;
+  registers().L = registers().L;
   return 4;
 }
 
@@ -317,153 +318,153 @@ int Z80::ld_L_L()
 int Z80::ld_A_n()
 {
   uint8 n = fetch();
-  m_main.A = n;
+  registers().A = n;
   return 7;
 }
 
 int Z80::ld_B_n()
 {
   uint8 n = fetch();
-  m_main.B = n;
+  registers().B = n;
   return 7;
 }
 
 int Z80::ld_C_n()
 {
   uint8 n = fetch();
-  m_main.C = n;
+  registers().C = n;
   return 7;
 }
 
 int Z80::ld_D_n()
 {
   uint8 n = fetch();
-  m_main.D = n;
+  registers().D = n;
   return 7;
 }
 
 int Z80::ld_E_n()
 {
   uint8 n = fetch();
-  m_main.E = n;
+  registers().E = n;
   return 7;
 }
 
 int Z80::ld_H_n()
 {
   uint8 n = fetch();
-  m_main.H = n;
+  registers().H = n;
   return 7;
 }
 
 int Z80::ld_L_n()
 {
   uint8 n = fetch();
-  m_main.L = n;
+  registers().L = n;
   return 7;
 }
 
 int Z80::ld_A_$HL$()
 {
-  uint8 v = m_memory->read(m_main.HL);
-  m_main.A = v;
+  uint8 v = m_memory->read(registers().HL);
+  registers().A = v;
   return 7;
 }
 
 int Z80::ld_B_$HL$()
 {
-  uint8 v = m_memory->read(m_main.HL);
-  m_main.B = v;
+  uint8 v = m_memory->read(registers().HL);
+  registers().B = v;
   return 7;
 }
 int Z80::ld_C_$HL$()
 {
-  uint8 v = m_memory->read(m_main.HL);
-  m_main.C = v;
+  uint8 v = m_memory->read(registers().HL);
+  registers().C = v;
   return 7;
 }
 
 int Z80::ld_D_$HL$()
 {
-  uint8 v = m_memory->read(m_main.HL);
-  m_main.D = v;
+  uint8 v = m_memory->read(registers().HL);
+  registers().D = v;
   return 7;
 }
 
 int Z80::ld_E_$HL$()
 {
-  uint8 v = m_memory->read(m_main.HL);
-  m_main.E = v;
+  uint8 v = m_memory->read(registers().HL);
+  registers().E = v;
   return 7;
 }
 
 int Z80::ld_H_$HL$()
 {
-  uint8 v = m_memory->read(m_main.HL);
-  m_main.H = v;
+  uint8 v = m_memory->read(registers().HL);
+  registers().H = v;
   return 7;
 }
 
 int Z80::ld_L_$HL$()
 {
-  uint8 v = m_memory->read(m_main.HL);
-  m_main.L = v;
+  uint8 v = m_memory->read(registers().HL);
+  registers().L = v;
   return 7;
 }
 
 int Z80::ld_A_$IX_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IX + d);
-  m_main.A = v;
+  uint8 v = m_memory->read(indexation().IX + d);
+  registers().A = v;
   return 19;
 }
 
 int Z80::ld_B_$IX_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IX + d);
-  m_main.B = v;
+  uint8 v = m_memory->read(indexation().IX + d);
+  registers().B = v;
   return 19;
 }
 
 int Z80::ld_C_$IX_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IX + d);
-  m_main.C = v;
+  uint8 v = m_memory->read(indexation().IX + d);
+  registers().C = v;
   return 19;
 }
 
 int Z80::ld_D_$IX_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IX + d);
-  m_main.D = v;
+  uint8 v = m_memory->read(indexation().IX + d);
+  registers().D = v;
   return 19;
 }
 
 int Z80::ld_E_$IX_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IX + d);
-  m_main.E = v;
+  uint8 v = m_memory->read(indexation().IX + d);
+  registers().E = v;
   return 19;
 }
 
 int Z80::ld_H_$IX_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IX + d);
-  m_main.H = v;
+  uint8 v = m_memory->read(indexation().IX + d);
+  registers().H = v;
   return 19;
 }
 
 int Z80::ld_L_$IX_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IX + d);
-  m_main.L = v;
+  uint8 v = m_memory->read(indexation().IX + d);
+  registers().L = v;
   return 19;
 }
 
@@ -471,202 +472,202 @@ int Z80::ld_L_$IX_plus_d$()
 int Z80::ld_A_$IY_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IY + d);
-  m_main.A = v;
+  uint8 v = m_memory->read(indexation().IY + d);
+  registers().A = v;
   return 19;
 }
 
 int Z80::ld_B_$IY_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IY + d);
-  m_main.B = v;
+  uint8 v = m_memory->read(indexation().IY + d);
+  registers().B = v;
   return 19;
 }
 
 int Z80::ld_C_$IY_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IY + d);
-  m_main.C = v;
+  uint8 v = m_memory->read(indexation().IY + d);
+  registers().C = v;
   return 19;
 }
 
 int Z80::ld_D_$IY_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IY + d);
-  m_main.D = v;
+  uint8 v = m_memory->read(indexation().IY + d);
+  registers().D = v;
   return 19;
 }
 
 int Z80::ld_E_$IY_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IY + d);
-  m_main.E = v;
+  uint8 v = m_memory->read(indexation().IY + d);
+  registers().E = v;
   return 19;
 }
 
 int Z80::ld_H_$IY_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IY + d);
-  m_main.H = v;
+  uint8 v = m_memory->read(indexation().IY + d);
+  registers().H = v;
   return 19;
 }
 
 int Z80::ld_L_$IY_plus_d$()
 {
   int8_t d = fetch();
-  uint8 v = m_memory->read(m_index.IY + d);
-  m_main.L = v;
+  uint8 v = m_memory->read(indexation().IY + d);
+  registers().L = v;
   return 19;
 }
 
 int Z80::ld_$HL$_A()
 {
-  m_memory->write(m_main.HL, m_main.A);
+  m_memory->write(registers().HL, registers().A);
   return 7;
 }
 
 int Z80::ld_$HL$_B()
 {
-  m_memory->write(m_main.HL, m_main.B);
+  m_memory->write(registers().HL, registers().B);
   return 7;
 }
 
 int Z80::ld_$HL$_C()
 {
-  m_memory->write(m_main.HL, m_main.C);
+  m_memory->write(registers().HL, registers().C);
   return 7;
 }
 
 int Z80::ld_$HL$_D()
 {
-  m_memory->write(m_main.HL, m_main.D);
+  m_memory->write(registers().HL, registers().D);
   return 7;
 }
 
 int Z80::ld_$HL$_E()
 {
-  m_memory->write(m_main.HL, m_main.E);
+  m_memory->write(registers().HL, registers().E);
   return 7;
 }
 
 int Z80::ld_$HL$_H()
 {
-  m_memory->write(m_main.HL, m_main.H);
+  m_memory->write(registers().HL, registers().H);
   return 7;
 }
 
 int Z80::ld_$HL$_L()
 {
-  m_memory->write(m_main.HL, m_main.L);
+  m_memory->write(registers().HL, registers().L);
   return 7;
 }
 
 int Z80::ld_$IX_plus_d$_A()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IX + d, m_main.A);
+  m_memory->write(indexation().IX + d, registers().A);
   return 19;
 }
 
 int Z80::ld_$IX_plus_d$_B()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IX + d, m_main.B);
+  m_memory->write(indexation().IX + d, registers().B);
   return 19;
 }
 
 int Z80::ld_$IX_plus_d$_C()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IX + d, m_main.C);
+  m_memory->write(indexation().IX + d, registers().C);
   return 19;
 }
 
 int Z80::ld_$IX_plus_d$_D()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IX + d, m_main.D);
+  m_memory->write(indexation().IX + d, registers().D);
   return 19;
 }
 
 int Z80::ld_$IX_plus_d$_E()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IX + d, m_main.E);
+  m_memory->write(indexation().IX + d, registers().E);
   return 19;
 }
 
 int Z80::ld_$IX_plus_d$_H()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IX + d, m_main.H);
+  m_memory->write(indexation().IX + d, registers().H);
   return 19;
 }
 
 int Z80::ld_$IX_plus_d$_L()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IX + d, m_main.L);
+  m_memory->write(indexation().IX + d, registers().L);
   return 19;
 }
 
 int Z80::ld_$IY_plus_d$_A()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IY + d, m_main.A);
+  m_memory->write(indexation().IY + d, registers().A);
   return 19;
 }
 
 int Z80::ld_$IY_plus_d$_B()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IY + d, m_main.B);
+  m_memory->write(indexation().IY + d, registers().B);
   return 19;
 }
 
 int Z80::ld_$IY_plus_d$_C()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IY + d, m_main.C);
+  m_memory->write(indexation().IY + d, registers().C);
   return 19;
 }
 
 int Z80::ld_$IY_plus_d$_D()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IY + d, m_main.D);
+  m_memory->write(indexation().IY + d, registers().D);
   return 19;
 }
 
 int Z80::ld_$IY_plus_d$_E()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IY + d, m_main.E);
+  m_memory->write(indexation().IY + d, registers().E);
   return 19;
 }
 
 int Z80::ld_$IY_plus_d$_H()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IY + d, m_main.H);
+  m_memory->write(indexation().IY + d, registers().H);
   return 19;
 }
 
 int Z80::ld_$IY_plus_d$_L()
 {
   int8_t d = fetch();
-  m_memory->write(m_index.IY + d, m_main.L);
+  m_memory->write(indexation().IY + d, registers().L);
   return 19;
 }
 int Z80::ld_$HL$_n()
 {
   uint8 n = fetch();
-  m_memory->write(m_main.HL, n);
+  m_memory->write(registers().HL, n);
   return 10;
 }
 
@@ -674,7 +675,7 @@ int Z80::ld_$IX_plus_d$_n()
 {
   int8_t d = fetch();
   uint8 n = fetch();
-  m_memory->write(m_index.IX + d, n);
+  m_memory->write(indexation().IX + d, n);
   return 19;
 }
 
@@ -682,22 +683,82 @@ int Z80::ld_$IY_plus_d$_n()
 {
   int8_t d = fetch();
   uint8 n = fetch();
-  m_memory->write(m_index.IY + d, n);
+  m_memory->write(indexation().IY + d, n);
   return 19;
 }
 
 int Z80::ld_A_$BC$()
 {
-  uint8 v = m_memory->read(m_main.BC);
-  m_main.A = v;
+  uint8 v = m_memory->read(registers().BC);
+  registers().A = v;
   return 7;
 }
 
 int Z80::ld_A_$DE$()
 {
-  uint8 v = m_memory->read(m_main.DE);
-  m_main.A = v;
+  uint8 v = m_memory->read(registers().DE);
+  registers().A = v;
   return 7;
 }
+
+int Z80::ld_A_$nn$()
+{
+  uint8 low = fetch();
+  uint8 high = fetch();
+
+  uint16 address = make16(high, low);
+
+  uint8 v = m_memory->read(address);
+  registers().A = v;
+  return 13;
+}
+
+int Z80::ld_$BC$_A()
+{
+  m_memory->write(registers().BC, registers().A);
+  return 7;
+}
+
+int Z80::ld_$DE$_A()
+{
+  m_memory->write(registers().DE, registers().A);
+  return 7;
+}
+
+int Z80::ld_$nn$_A()
+{
+  uint8 low = fetch();
+  uint8 high = fetch();
+
+  uint16 address = make16(high, low);
+
+  m_memory->write(address, registers().A);
+  return 13;
+}
+
+int Z80::ld_A_I()
+{
+  registers().A = interrupt();
+  return 9;
+}
+
+int Z80::ld_A_R()
+{
+  registers().A = refresh();
+  return 9;
+}
+
+int Z80::ld_I_A()
+{
+  interrupt() = registers().A;
+  return 9;
+}
+
+int Z80::ld_R_A()
+{
+  refresh() = registers().A;
+  return 9;
+}
+
 
 }

@@ -47,8 +47,16 @@ public:
   ///Getter indexation registers
   inline IndexZ80& indexation() { return m_index; }
 
+  ///Getter stack pointer register
+  inline uint16& stack_pointer() { return m_SP; }
 
-  //Faltan  mas accesos
+  ///Getter interrupt register
+  inline uint8& interrupt() { return m_I; }
+
+  ///Getter refresh register
+  inline uint8& refresh() { return m_R; }
+
+
 
 private:
   /// Fetch the instruction or operand from memory
@@ -63,6 +71,9 @@ private:
   /// Decode and execute an intruction for 0xFD SubOpcode.
   int decodeAndExecuteFD();
 
+  /// Decode and execute an intruction for 0xED SubOpcode.
+  int decodeAndExecuteED();
+
   /// Initialize the assignaments for decode tables
   void initializeDecodeTables();
 
@@ -76,10 +87,13 @@ private:
   IndexZ80      m_index;          ///< Index registers
   uint16        m_PC;             ///< Program counter
   uint16        m_SP;             ///< Stack pointer
+  uint8         m_I;              ///< Interrupt register
+  uint8         m_R;              ///< Refresh memory register
 
   instruction_ptr m_decodetable[256] = {};
   instruction_ptr m_decodetableDD[256] = {};
   instruction_ptr m_decodetableFD[256] = {};
+  instruction_ptr m_decodetableED[256] = {};
 
 
 private:
@@ -205,6 +219,64 @@ private:
   int ld_A_$BC$();
   // LD A, (DE)
   int ld_A_$DE$();
+  // LD A, (nn)
+  int ld_A_$nn$();
+  // LD (BC), A
+  int ld_$BC$_A();
+  // LD (DE), A
+  int ld_$DE$_A();
+  // LD (nn), A
+  int ld_$nn$_A();
+  // LD A, I
+  int ld_A_I();
+  // LD A, R
+  int ld_A_R();
+  // LD I, A
+  int ld_I_A();
+  // LD R, A
+  int ld_R_A();
+
+
+  // Load 16 bit
+  //-------------------
+  // LD dd, nn
+  int ld_BC_nn();
+  int ld_DE_nn();
+  int ld_HL_nn();
+  int ld_SP_nn();
+  // LD IX, nn
+  int ld_IX_nn();
+  // LD IY, nn
+  int ld_IY_nn();
+  // LD HL, (nn)
+  int ld_HL_$nn$();
+  // LD dd, (nn)
+  int ld_BC_$nn$();
+  int ld_DE_$nn$();
+  int ld_HL_$nn$2();
+  int ld_SP_$nn$();
+  // LD IX, (nn)
+  int ld_IX_$nn$();
+  // LD IY, (nn)
+  int ld_IY_$nn$();
+  // LD (nn), HL
+  int ld_$nn$_HL();
+  // LD (nn), dd
+  int ld_$nn$_BC();
+  int ld_$nn$_DE();
+  int ld_$nn$_HL2();
+  int ld_$nn$_SP();
+  // LD (nn), IX
+  int ld_$nn$_IX();
+  // LD (nn), IY
+  int ld_$nn$_IY();
+  // LD SP, HL
+  int ld_SP_HL();
+  // LD SP, IX
+  int ld_SP_IX();
+  // LD SP, IY
+  int ld_SP_IY();
+
 
 
 };

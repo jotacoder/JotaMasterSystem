@@ -23,11 +23,14 @@ SOURCES += z80.cpp \
     MasterSystem.cpp \
     instructions/load8bit.cpp \
     test/test_load8bit.cpp \
-    instructions/initialization.cpp
+    instructions/initialization.cpp \
+    test/test_load16bit.cpp \
+    instructions/load16bit.cpp
 
 HEADERS += \
     types.h \
     z80.h \
     Memory.h \
-    MasterSystem.h
+    MasterSystem.h \
+    utils.h
 

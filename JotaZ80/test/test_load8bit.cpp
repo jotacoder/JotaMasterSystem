@@ -1304,3 +1304,119 @@ TEST_F(Load8bit, LD_A_$DE$)
   EXPECT_EQ(ticks, 7);
 }
 
+//-------------------------------------------
+// Load8bit Data in Value(nn) address to Register A
+//-------------------------------------------
+
+TEST_F(Load8bit, LD_A_$nn$)
+{
+  mem->write(0, 0x3A);        // Opcode
+  mem->write(1, 220);         // low
+  mem->write(2, 5);           // high
+
+  mem->write(1500, 100);      // value @1500
+
+  int ticks = cpu->run();
+
+  EXPECT_EQ(cpu->registers().A, 100);
+  EXPECT_EQ(ticks, 13);
+}
+
+//-------------------------------------------
+// Load8bit Register A to Data in BC address
+//-------------------------------------------
+
+TEST_F(Load8bit, LD_$BC$_A)
+{
+  mem->write(0, 0x02);        // Opcode
+  cpu->registers().BC = 1000; // Address
+  cpu->registers().A = 100;
+
+    int ticks = cpu->run();
+
+  EXPECT_EQ(mem->read(1000), 100);
+  EXPECT_EQ(ticks, 7);
+}
+
+//-------------------------------------------
+// Load8bit Register A to Data in DE address
+//-------------------------------------------
+
+TEST_F(Load8bit, LD_$DE$_A)
+{
+  mem->write(0, 0x12);        // Opcode
+  cpu->registers().DE = 1000; // Address
+  cpu->registers().A = 100;
+
+    int ticks = cpu->run();
+
+  EXPECT_EQ(mem->read(1000), 100);
+  EXPECT_EQ(ticks, 7);
+}
+
+//-------------------------------------------
+// Load8bit Register A to Data in Value(nn) address
+//-------------------------------------------
+
+TEST_F(Load8bit, LD_$nn$_A)
+{
+  mem->write(0, 0x32);        // Opcode
+  mem->write(1, 220);         // low
+  mem->write(2, 5);           // high
+  cpu->registers().A = 100;
+
+  int ticks = cpu->run();
+
+  EXPECT_EQ(mem->read(1500), 100);
+  EXPECT_EQ(ticks, 13);
+}
+
+TEST_F(Load8bit, LD_A_I)
+{
+  mem->write(0, 0xED);  // Opcode
+  mem->write(1, 0x57);  // SubOpcode
+  cpu->interrupt() = 10;
+
+  int ticks = cpu->run();
+
+  EXPECT_EQ(cpu->registers().A, 10);
+  EXPECT_EQ(ticks, 9);
+}
+
+TEST_F(Load8bit, LD_A_R)
+{
+  mem->write(0, 0xED);  // Opcode
+  mem->write(1, 0x5F);  // SubOpcode
+  cpu->refresh() = 10;
+
+  int ticks = cpu->run();
+
+  EXPECT_EQ(cpu->registers().A, 10);
+  EXPECT_EQ(ticks, 9);
+}
+
+TEST_F(Load8bit, LD_I_A)
+{
+  mem->write(0, 0xED);  // Opcode
+  mem->write(1, 0x47);  // SubOpcode
+  cpu->registers().A = 10;
+
+  int ticks = cpu->run();
+
+  EXPECT_EQ(cpu->interrupt(), 10);
+  EXPECT_EQ(ticks, 9);
+}
+
+TEST_F(Load8bit, LD_R_A)
+{
+  mem->write(0, 0xED);  // Opcode
+  mem->write(1, 0x4F);  // SubOpcode
+  cpu->registers().A = 10;
+
+  int ticks = cpu->run();
+
+  EXPECT_EQ(cpu->refresh(), 10);
+  EXPECT_EQ(ticks, 9);
+}
+
+

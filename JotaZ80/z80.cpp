@@ -84,9 +84,19 @@ int Z80::decodeAndExecuteFD()
 {
   uint8 subopcode = fetch();
 
-  assert(m_decodetableDD[subopcode] != NULL);
+  assert(m_decodetableFD[subopcode] != NULL);
 
   int ticks = (this->*(m_decodetableFD[subopcode]))();
+  return ticks;
+}
+
+int Z80::decodeAndExecuteED()
+{
+  uint8 subopcode = fetch();
+
+  assert(m_decodetableED[subopcode] != NULL);
+
+  int ticks = (this->*(m_decodetableED[subopcode]))();
   return ticks;
 }
 
