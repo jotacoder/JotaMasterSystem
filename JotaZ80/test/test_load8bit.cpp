@@ -2,7 +2,7 @@
 
 #include "z80.h"
 using namespace jota;
-
+/*
 class Load8bit : public testing::Test
 {
 public:
@@ -1420,3 +1420,4 @@ TEST_F(Load8bit, LD_R_A)
 }
 
 
+*/

@@ -215,6 +215,43 @@ void Z80::initializeDecodeTables()
   // LD SP, IY
   m_decodetableFD[0xF9] = &Z80::ld_SP_IY;
 
+  // Stack
+  //-------------------
+  // PUSH qq
+  m_decodetable[0xC5]   = &Z80::push_BC;
+  m_decodetable[0xD5]   = &Z80::push_DE;
+  m_decodetable[0xE5]   = &Z80::push_HL;
+  m_decodetable[0xF5]   = &Z80::push_AF;
+  // PUSH IX
+  m_decodetableDD[0xE5] = &Z80::push_IX;
+  // PUSH IY
+  m_decodetableFD[0xE5] = &Z80::push_IY;
+
+  // POP BC
+  m_decodetable[0xC1]   = &Z80::pop_BC;
+  m_decodetable[0xD1]   = &Z80::pop_DE;
+  m_decodetable[0xE1]   = &Z80::pop_HL;
+  m_decodetable[0xF1]   = &Z80::pop_AF;
+  // POP IX
+  m_decodetableDD[0xE1] = &Z80::pop_IX;
+  // POP IY
+  m_decodetableFD[0xE1] = &Z80::pop_IY;
+
+  // Exchange
+  //------------------
+  // EX DE, HL
+  m_decodetable[0xEB]   = &Z80::ex_DE_HL;
+  // EX AF, AF'
+  m_decodetable[0x08]   = &Z80::ex_AF_AFalt;
+  // EXX
+  m_decodetable[0xD9]   = &Z80::exx;
+  // EX (SP), HL
+  m_decodetable[0xE3]   = &Z80::ex_$SP$_HL;
+  // EX (SP), IX
+  m_decodetableDD[0xE3] = &Z80::ex_$SP$_IX;
+  // EX (SP), IY
+  m_decodetableFD[0xE3] = &Z80::ex_$SP$_IY;
+
 }
 
 }

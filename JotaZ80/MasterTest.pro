@@ -25,7 +25,11 @@ SOURCES += z80.cpp \
     test/test_load8bit.cpp \
     instructions/initialization.cpp \
     test/test_load16bit.cpp \
-    instructions/load16bit.cpp
+    instructions/load16bit.cpp \
+    test/test_stack.cpp \
+    instructions/stack.cpp \
+    test/test_exchange.cpp \
+    instructions/exchange.cpp
 
 HEADERS += \
     types.h \

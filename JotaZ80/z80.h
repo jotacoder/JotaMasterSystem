@@ -277,8 +277,42 @@ private:
   // LD SP, IY
   int ld_SP_IY();
 
+  // Stack
+  //-------------------
+  // PUSH qq
+  int push_BC();
+  int push_DE();
+  int push_HL();
+  int push_AF();
+  // PUSH IX
+  int push_IX();
+  // PUSH IY
+  int push_IY();
+  // POP qq
+  int pop_BC();
+  int pop_DE();
+  int pop_HL();
+  int pop_AF();
+  // POP IX
+  int pop_IX();
+  // POP IY
+  int pop_IY();
 
 
+  // Exchange
+  //---------------------
+  // EX DE, HL
+  int ex_DE_HL();
+  // EX AF, AF'
+  int ex_AF_AFalt();
+  // EXX
+  int exx();
+  // EX (SP), HL
+  int ex_$SP$_HL();
+  // EX (SP), IX
+  int ex_$SP$_IX();
+  // EX (SP), IY
+  int ex_$SP$_IY();
 };
 
 
